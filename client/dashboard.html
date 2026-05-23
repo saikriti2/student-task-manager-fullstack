@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Task Dashboard</h1>
+
+<input
+type="text"
+id="task"
+placeholder="Enter task"
+>
+
+<button onclick="addTask()">
+
+Add Task
+
+</button>
+
+<ul id="taskList">
+
+</ul>
+
+</div>
+
+<script>
+
+async function addTask(){
+
+await fetch(
+"http://localhost:5000/tasks",
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+task:
+document.getElementById(
+"task"
+).value
+
+})
+
+}
+
+);
+
+loadTasks();
+
+}
+
+async function loadTasks(){
+
+let response=
+await fetch(
+"http://localhost:5000/tasks"
+);
+
+let data=
+await response.json();
+
+let list=
+document.getElementById(
+"taskList"
+);
+
+list.innerHTML="";
+
+data.forEach(task=>{
+
+list.innerHTML+=`
+
+<li>
+
+${task.task}
+
+</li>
+
+`;
+
+});
+
+}
+
+loadTasks();
+
+</script>
+
+</body>
+</html>
