@@ -15,6 +15,12 @@ href="style.css">
 <div class="container">
 
 <h1>Task Dashboard</h1>
+<input
+id="search"
+onkeyup="searchTask()"
+placeholder="Search Tasks"
+>
+
 
 <input
 type="text"
@@ -33,7 +39,6 @@ Add Task
 </ul>
 
 </div>
-
 <script>
 
 async function addTask(){
@@ -66,6 +71,8 @@ document.getElementById(
 loadTasks();
 
 }
+
+
 
 async function loadTasks(){
 
@@ -100,9 +107,54 @@ ${task.task}
 
 }
 
+
+
+function searchTask(){
+
+let value=
+
+document
+.getElementById(
+"search"
+)
+
+.value
+
+.toLowerCase();
+
+let tasks=
+
+document.querySelectorAll(
+"li"
+);
+
+tasks.forEach(task=>{
+
+if(
+
+task.innerText
+.toLowerCase()
+.includes(value)
+
+){
+
+task.style.display=
+"block";
+
+}
+
+else{
+
+task.style.display=
+"none";
+
+}
+
+});
+
+}
+
+
 loadTasks();
 
 </script>
-
-</body>
-</html>
