@@ -44,7 +44,7 @@ Add Task
 async function addTask(){
 
 await fetch(
-"http://localhost:5000/tasks",
+"https://student-task-manager-fullstack-api.onrender.com/tasks",
 {
 
 method:"POST",
@@ -78,7 +78,7 @@ async function loadTasks(){
 
 let response=
 await fetch(
-"http://localhost:5000/tasks"
+"https://student-task-manager-fullstack-api.onrender.com/tasks"
 );
 
 let data=
