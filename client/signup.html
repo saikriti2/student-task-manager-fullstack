@@ -1,5 +1,14 @@
 <!DOCTYPE html>
+
 <html>
+
+<head>
+
+<title>Signup</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
 
 <body>
 
@@ -9,14 +18,20 @@
 id="username"
 placeholder="Username">
 
+<br><br>
+
 <input
 id="email"
 placeholder="Email">
+
+<br><br>
 
 <input
 id="password"
 type="password"
 placeholder="Password">
+
+<br><br>
 
 <button onclick="signup()">
 
@@ -24,12 +39,36 @@ Signup
 
 </button>
 
+
 <script>
 
 async function signup(){
 
+let username=
+
+document.getElementById(
+"username"
+).value;
+
+let email=
+
+document.getElementById(
+"email"
+).value;
+
+let password=
+
+document.getElementById(
+"password"
+).value;
+
+
+let response=
+
 await fetch(
+
 "https://student-task-manager-fullstack-api.onrender.com/signup",
+
 {
 
 method:"POST",
@@ -42,14 +81,9 @@ headers:{
 
 body:JSON.stringify({
 
-username:
-username.value,
-
-email:
-email.value,
-
-password:
-password.value
+username,
+email,
+password
 
 })
 
@@ -57,16 +91,30 @@ password.value
 
 );
 
+let data=
+
+await response.json();
+
 alert(
-"Signup successful"
+data.message
 );
 
+if(
+
+data.message==="Signup successful"
+
+){
+
 window.location=
+
 "login.html";
+
+}
 
 }
 
 </script>
 
 </body>
+
 </html>
